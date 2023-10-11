@@ -35,4 +35,8 @@ This script will send request to get the currency value requested by the user. T
 ## Special Considerations
 * Since the Javascript compiles faster than the python running the uagents the shown value on the frontend comes with an latency. Meaning it repreasents the values selected on the currencies selected prior to what is currently selected
 * Unfortunately we could not complete the Graph we planned for historical value as that API came was paid.
+* Since our API key is a free one, we have left it in the program. (Therefore the there are no other env files required)
+* We have Used absolute paths throughout the program, the user will have to change them according to their file structure on their end
+
+If any issues arrise in running/setting up the contact: pushpak.agrawal2022@vitstudent.ac.in
 
