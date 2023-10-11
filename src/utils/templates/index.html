@@ -1,0 +1,139 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="{{url_for( 'static', filename = 'script.js')}}"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+            
+        .semi-black-button {
+            background-color: rgba(0, 0, 0, 0.5); 
+            color: white;
+             border:#000000;
+            padding: 10px 20px; 
+            cursor: pointer; 
+        }
+        .semi-black-button:hover {
+            background-color: rgba(0, 0, 0, 0.7); 
+        }
+        body 
+        {
+            /* background-image: url('background.png'); */
+            background-image: url("{{url_for('static' , filename = 'background.png')}}");
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+
+        body::after 
+        {
+        content: "";
+        display: block;
+        height: 180px; /* Adjust the value as needed */
+        }
+
+        .submit-button {
+            background-color: #007bff; /* Default background color */
+            color: #fff; /* Default text color */
+            padding: 10px 20px; /* Adjust padding as needed */
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s; /* Transition for color change */
+        }
+
+        /* Define the button style on hover */
+        .submit-button:hover {
+          background-color: #0056b3; /* New background color on hover */
+        }
+    </style>
+</head>
+<body>
+    <div class = "grid grid-rows-3 h-screen">
+        <div class = "grid grid-cols-2" >
+            <div class = "flex flex-rows">
+                <div class = "mx-auto my-auto text-6xl font-semibold" style = "color: #EADBC8;" >
+                    CurrenTrack
+                </div>
+            </div>
+            <div class = "grid grid-cols-3" >
+                <div class = "flex flex-rows " >
+                    <div class = "px-4 mx-auto my-auto w-48 h-12 flex flex-rows space-x-3 rounded-lg" style = "background-color: rgba(0,0,0,0.4)">
+                        
+                            <div id = "first-country-val" type = "number" class = "w-10 mx-auto my-auto" style = "color: #EADBC8; background-color: rgba(0,0,0,0);"> 69.420</div>
+                        
+                        <div class = "flex flex-rows rounded-lg" style = "background-color: rgba(0,0,0,0); color: #EADBC8;">
+                            <select onchange="displayFileContent(event)" id = "first-country" type = "dropdown" style = "background-color: rgba(0,0,0,0);">    
+                                <option style = "color: #EADBC8;" value = "USD">USD</option>
+                                <option style = "color: #EADBC8;" value = "INR">INR</option>
+                                <option style = "color: #EADBC8;" value = "EUR">EUR</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class = "flex flex-rows" >
+                    <div class = "px-4 mx-auto my-auto w-48 h-12 flex flex-rows space-x-3 rounded-lg" style = "background-color: rgba(0,0,0,0.4)">
+                       
+                            <div id = "second-country-val" type = "number" class = "w-10 mx-auto my-auto" style = "color: #EADBC8; background-color: rgba(0,0,0,0);">420</div>
+                       
+                        <div class = "flex flex-rows" style = "background-color: rgba(0,0,0,0); color: #EADBC8;" >
+                            <select onchange="displayFileContent(event)" id = "second-country" type = "dropdown" style = "background-color: rgba(0,0,0,0);">    
+                                <option style = "color: #EADBC8;" value = "USD">USD</option>
+                                <option style = "color: #EADBC8;" value = "INR">INR</option>
+                                <option style = "color: #EADBC8;" value = "EUR">EUR</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class = "flex flex-rows m-12">
+                    <div class = "px-4 mx-auto my-auto w-48 h-12 flex flex-rows space-x-3 rounded-lg" style = "background-color: rgba(0,0,0,0.4)">
+                        
+                    <select onchange="displayFileContent(event)" id = "second-country" >    
+                        <button class="semi-black-button">Update Values</button>
+                    </select>
+                    </div>
+                </div> -->
+
+            </div>
+        </div>
+        <div class = "grid grid-cols-2">
+            <div class = "flex flex-rows m-12">
+                <div class = "w-96 mx-auto my-auto grid-rows-2 rounded-lg" style = "background-color: rgba(0,0,0,0.4);">
+                    <div class = "p-7">
+                        <form method = "post" action = "/process" id = "form" class = "space-y-12" >
+                        <div class = "text-2xl font-semibold" style = "color: #EADBC8;">
+                            Threshold
+                        </div>
+                        <input id = "lower-threshold" class = "h-10 m-4 rounded-lg" type = "number" placeholder = "Enter Lower Threshold">
+                        <input id = "upper-threshold" class = "h-10 m-4 rounded-lg" type = "number" placeholder = "Enter Upper Threshold">
+                        <div class = "text-2xl font-semibold my-6 " style = "color: #EADBC8;">
+                            Email
+                        </div>
+                        <input id = "email" class = "h-12 border rounded-2xl m-4" type = "text" placeholder = "Enter your email">
+                        <div class = "flex flex-rows" >
+                            <!-- <button id="myButton">Click Me</button> -->
+                            <input class = "h-10 w-24 mx-auto my-auto rounded-2xl" style = "background-color: #EADBC8;" type = "submit" value = "Submit">
+                        </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div  class ="m-12" style=" background-color: rgba(0,0,0,0.45); border-radius: 10px;">
+                <h1 style = "
+                text-align: center;
+                font-size: 40px;
+                color: #EADBC8;
+                padding-top: 40px;
+                padding-bottom: 10px;
+                "> Market Status</h1>
+                <canvas id="myChart" style = "height: 25rem; margin: 45px; border: 1px solid #000000;"></canvas>
+            </div>
+        </div>
+        </div>     
+    </div>
+
+</body>
+</html>
