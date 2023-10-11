@@ -1,22 +1,18 @@
 # Currency Alert Pro
 Currency Alert Pro is your go-to solution for staying on top of currency exchange rates. With the ability to select your base currency and multiple foreign currencies, it connects to real-time exchange rate data via API. You can set your own custom thresholds for alerts, and whenever your specified exchange rates cross those limits, it promptly sends notifications directly to your device. Stay in control and make informed currency exchange decisions with Currency Alert Pro.
 
-## Setup .env file
-  To run Currency Alert Pro you need API keys from
-* exchangerate-api
-
+## Prerequisites
+```bash
+pip install uagents
+pip install poetry
+```
 #### Exchangerate-api
 * Visit [Exchangerate-api](https://www.exchangerate-api.com/)
 
-To use the environment variables from .env and install the project:
-```bash
-cd src
-source .env
-poetry intall
-```
 ## Run the main Script
 * To run the project and its agents:
 ```bash
+cd src
 poetry run python main.py
 ```
 * You will see in your terminal
@@ -37,3 +33,5 @@ This script will send request to get the currency value requested by the user. T
 * We have created a alert agent using uAgents which constantly monitors the thresholds set by the user and send email as soon as thresholds are met.
 
 ## Special Considerations
+* Since the Javascript compiles faster than the python running the uagents the shown value on the frontend comes with an latency. Meaning it repreasents the values selected on the currencies selected prior to what is currently selected
+* Unfortunately we could not commplete
